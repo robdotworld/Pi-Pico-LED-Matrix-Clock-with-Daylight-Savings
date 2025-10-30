@@ -2,13 +2,25 @@
 A raspberry Pi Pico LED matrix clock which factors in DST (daylight savings time)
 
 
+What this does
+==============
+This uses a basic 8x8 LED matrix to display the time. I've used one with 8 blocks (so eight 8x8 LED matrix connected together) but you could also use the one half the size (so four 8x8) matrix and change the coding so you just display the time as HHMM rather than HH:MM:SS
+
+
+Why I created my own script / why I wanted an LED matrix clock
+==============================================================
+1) I hate having to go round all the clocks in my house when the clocks go back/forward and wanted automated clocks
+2) I wanted a clock that was automatically kept up to date using an NTP server
+3) I wanted a bright / large LED clock that I could see from a distance
+
+
 Hardware required
 =================
-1x Raspberry Pi Pico W (or Pico 2W)
-1x LED matrix (8x8 with 8 blocks, so 64x8) - https://www.amazon.co.uk/Cascadable-MAX7219-Matrixes-Module-Microcontrollers/dp/B0FL7QLNWY/
+- Raspberry Pi Pico W (or Pico 2W)
+- LED matrix (8x8 with 8 blocks, so 64x8) - https://www.amazon.co.uk/Cascadable-MAX7219-Matrixes-Module-Microcontrollers/dp/B0FL7QLNWY/
 
 
-Resources used / rredits
+Resources used / credits
 ========================
 
 Basic clock started off with this video:-
@@ -16,3 +28,12 @@ https://www.youtube.com/watch?v=CW1OAYsPnjs
 
 DST (daylight savings time) stuff to work out last Sunday of the month
 https://github.com/mrlunk/Raspberry-Pi-Pico/blob/main/DST_Daylight_Saving_Time_correction_example.py
+
+
+Customising for your region
+===========================
+This code is based on UK (as that's where I am)
+
+To customise for your region I would:-
+- Change nUTCOffset in the settings section to your time zone. eg if you're in California and Pacific Standard Time (PST) then your offset would be -8
+- Update the fWorkOutDSTDatesForThisYearAndUpdateDSTOffset function so that DST is specific to your region. In the UK our Daylight Savings Time (DST), which we call "British Summer Time" (BST) is between last Sunday of March and last Sunday of October. If it's different in your region you'll need to modify this function
