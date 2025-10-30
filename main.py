@@ -41,15 +41,10 @@ sWiFiPW = ""
 # Clock settings
 nUTCOffset = 0 # If in the UK this will be 0 as we use GMT +0. If in California for example (Pacific Standard Time / PST) this would be -8
 nDSTOffset = 0 # This will be set to 1 during daylight saving times (eg in the summer / British Summer Time)
-tDST_start_date = 0
-tDST_end_date = 0
+tDST_start_date = 0 # This will be populated in the fWorkOutDSTDatesForThisYearAndUpdateDSTOffset function
+tDST_end_date = 0 # This will be populated in the fWorkOutDSTDatesForThisYearAndUpdateDSTOffset function
 
-# Pins
-nPin_DIN = 0 # To populate
-nPin_CS = 0 # To populate
-nPin_CLK = 0 # To populate
-
-# Screen width (number of "blocks" / modules, eg 4, 8, etc)
+# Screen width (number of "blocks" / modules, eg 4 or 8)
 nScreenWidth = 8
 
 
@@ -60,9 +55,6 @@ cs = Pin(5, Pin.OUT)
 display = max7219.Matrix8x8(spi,cs,nScreenWidth)
 display.brightness(1)
 display.fill(0)
-
-
-
 
 
 # 4) fDisplay_ShowText - Show text on the screen
@@ -301,17 +293,21 @@ while True:
 
     # Get the time (without offsets)
     tNow = time.localtime(time.time())
-    sTimeStringWithoutOffsets = f'{tNow[3]:02d}:{tNow[4]:02d}:{tNow[5]:02d}'
+    sTimeString_WithoutOffsets = f'{tNow[3]:02d}:{tNow[4]:02d}:{tNow[5]:02d}'
     
     # Get the time (with offsets)
     tNow = time.localtime(time.time() + (nUTCOffset*3600) + (nDSTOffset*3600))
-    sTimeString = f'{tNow[3]:02d}:{tNow[4]:02d}:{tNow[5]:02d}'
+    sTimeString_WithOffsets_HHMMSS = f'{tNow[3]:02d}:{tNow[4]:02d}:{tNow[5]:02d}'
+    sTimeString_WithOffsets_HHMM = f'{tNow[3]:02d}{tNow[4]:02d}'
     
     # Output to debug
-    print(sTimeStringWithoutOffsets + ' ' + sTimeString)
+    print(sTimeString_WithoutOffsets + ' ' + sTimeString_WithOffsets_HHMMSS + ' ' + sTimeString_WithOffsets_HHMM)
     
     # Show on display
-    fDisplay_ShowText(sTimeString)
+    if nScreenWidth==8:
+        fDisplay_ShowText(sTimeString_WithOffsets_HHMMSS)
+    else:
+        fDisplay_ShowText(sTimeString_WithOffsets_HHMM)
     
     # Sleep
     time.sleep(0.2)
