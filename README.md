@@ -20,6 +20,15 @@ Hardware required
 - LED matrix (8x8 with 8 blocks, so 64x8) - https://www.amazon.co.uk/Cascadable-MAX7219-Matrixes-Module-Microcontrollers/dp/B0FL7QLNWY/
 
 
+How to wire it all up
+=====================
+VCC on LED matrix = PIN 40 on Peco
+GND on LED matrix = PIN 38 on Peco
+DIN on LED matrix = PIN 5 on Peco
+CS on LED matrix = PIN 7 on Peco
+CLK on LED matrix = PIN 4 on Peco
+
+
 Resources used / credits
 ========================
 
@@ -28,6 +37,9 @@ https://www.youtube.com/watch?v=CW1OAYsPnjs
 
 DST (daylight savings time) stuff to work out last Sunday of the month
 https://github.com/mrlunk/Raspberry-Pi-Pico/blob/main/DST_Daylight_Saving_Time_correction_example.py
+
+MicroPython max7219 cascadable 8x8 LED matrix driver
+https://github.com/mcauser/micropython-max7219
 
 
 Customising for your region
