@@ -1,6 +1,10 @@
 # Pi-Pico-LED-Matrix-Clock-with-Daylight-Savings
 A raspberry Pi Pico LED matrix clock which factors in DST (daylight savings time)
 
+Pictures / more info / other projects etc
+=========================================
+https://rob.world/raspberry-pi-pico-w-led-matrix-clock-with-dst-and-ntp/article_9
+
 
 What this does
 ==============
