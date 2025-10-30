@@ -29,6 +29,13 @@ How to wire it all up
 - CLK on LED matrix = PIN 4 on Peco
 
 
+Switching between an LED matrix with 8 blocks and one with 4 blocks
+===================================================================
+- The 8 block version will display the time in HH:MM:SS format (eg 17:33:30)
+- The 4 block version will diplsy the time in HHMM format (eg 1733)
+- To change between the two change the nScreenWidth var in the settings section
+
+
 Resources used / credits
 ========================
 
